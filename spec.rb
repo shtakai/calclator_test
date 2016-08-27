@@ -32,6 +32,10 @@ class Person
   def full_name_with_middle_initial
     @first_name << ' ' << @last_name << ' ' << @middle_name.upcase[0]
   end
+
+  def initials
+    @first_name.upcase[0] << @last_name.upcase[0]
+  end
 end
 
 RSpec.describe Person do
@@ -61,5 +65,12 @@ RSpec.describe Person do
     end
   end
 
-  describe "#initials"
+  describe "#initials" do
+    it 'shows initials(first/last)' do
+      person = Person.new(first_name: 'first',
+                          middle_name: 'middle',
+                          last_name: 'last')
+      expect(person.initials).to eq('FL')
+    end
+  end
 end
